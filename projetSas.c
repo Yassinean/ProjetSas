@@ -19,37 +19,36 @@ typedef struct tache
     char description[100];
     char statut[100];
 } tache;
+int n = 0;
 
-int id = 0;
 void ajouter(tache t[])
 {
 
-    date deadline;
-    char titre[100], description[100], statut[100];
-    int n = 0;
+    t->id = n + 1;
     printf("%d\n", n + 1);
     printf("Entrer le titre du tache : \n");
-    scanf("%s", t[id].titre);
+    scanf("%s", t[n].titre);
     printf("Entrer la description du tache : \n");
-    scanf("%s", t[id].description);
+    scanf("%s", t[n].description);
     printf("Entrer le deadline du tache : \n");
     printf("Entrer le deadline jour mois annee : \n");
-    scanf("%d %d %d", &t[id].deadline->jour, &t[id].deadline->mois,&t[id].deadline->annee);
+    scanf("%d %d %d", &t[n].deadline->jour, &t[n].deadline->mois, &t[n].deadline->annee);
     printf("Entrer le statut du tache : \n");
-    scanf("%s", t[id].statut);
+    scanf("%s", t[n].statut);
+
+        printf("\n\n\n\nLe titre du tache est : %s\n", t.titre);
+    printf("La description du tache est : %s\n", t.description);
+    printf("Le statut du tache est : %s\n", t.statut);
 }
 
 void afficher()
 {
-    tache t;
-    int id;
-    date deadline;
-    char titre[100], description[100], statut[100];
-    int n = 0;
+    tache t;ç
+
     printf("%d\n", n + 1);
-    printf("Le titre du tache est : %s", t.titre);
-    printf("La description du tache est : %s", t.description);
-    printf("Le statut du tache est : %s", t.statut);
+    printf("Le titre du tache est : %s\n", t.titre);
+    printf("La description du tache est : %s\n", t.description);
+    printf("Le statut du tache est : %s\n", t.statut);
 }
 
 int main()
@@ -74,7 +73,7 @@ int main()
         case 1:
             printf("1 - Ajouter une nouvelle tache : \n");
             ajouter(T);
-            afficher();
+            afficher(T);
             break;
         case 2:
             printf("2 - Ajouter plusieurs nouvelles taches : \n");

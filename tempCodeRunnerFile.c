@@ -1,28 +1,4 @@
-typedef struct date
-// {
-//     int jour;
-//     int mois;
-//     int annee;
-// } date;
 
-// typedef struct tache
-// {
-//     int id;
-//     char titre[100];
-//     date deadline[100];
-//     char description[100];
-//     char statut[100];
-// } tache;
-
-// void tache()
-// {
-//     tache t;
-//     t.id = 1;
-//     printf("Entrer l'ID du tache");
-//     scanf("%d", t.id);
-//     printf("Entrer l du tache");
-//     scanf("%d", t.titre);
-//     strcpy(t.titre, "");
-//     strcpy(t.description, "");
-//     strcpy(t.statut, "");
-// }
+        printf("\n\n\n\nLe titre du tache est : %s\n", t.titre);
+    printf("La description du tache est : %s\n", t.description);
+    printf("Le statut du tache est : %s\n", t.statut);
