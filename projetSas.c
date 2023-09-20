@@ -9,7 +9,7 @@ typedef struct date
     int jour;
     int mois;
     int annee;
-}date;
+} date;
 
 typedef struct tache
 {
@@ -18,40 +18,47 @@ typedef struct tache
     date deadline[100];
     char description[100];
     char statut[100];
-}tache;
+} tache;
 
-void ajouter()
+int id = 0;
+void ajouter(tache t[])
+{
+
+    date deadline;
+    char titre[100], description[100], statut[100];
+    int n = 0;
+    printf("%d\n", n + 1);
+    printf("Entrer le titre du tache : \n");
+    scanf("%s", t[id].titre);
+    printf("Entrer la description du tache : \n");
+    scanf("%s", t[id].description);
+    printf("Entrer le deadline du tache : \n");
+    printf("Entrer le deadline jour : \n");
+    scanf("%d", &t[id].deadline->jour);
+    printf("Entrer le deadline mois : \n");
+    scanf("%d", &t[id].deadline->mois);
+    printf("Entrer le deadline annee: \n");
+    scanf("%d", &t[id].deadline->annee);
+    printf("Entrer le statut du tache : \n");
+    scanf("%s", t[id].statut);
+}
+
+void afficher()
 {
     tache t;
     int id;
     date deadline;
     char titre[100], description[100], statut[100];
     int n = 0;
-    printf("%d\n", n+1); 
-    printf("Entrer le titre du tache : ");
-    scanf("%s", t.titre);
-    printf("Entrer la description du tache : ");
-    scanf("%s",t.description);
-    printf("Entrer le statut du tache : ");
-    scanf("%s",t.statut);
-}
-
-void afficher(){
-    tache t;
-    int id;
-    date deadline;
-    char titre[100], description[100], statut[100];
-    int n = 0;
-    printf("%d\n", n+1);   
+    printf("%d\n", n + 1);
     printf("Le titre du tache est : %s", t.titre);
-    printf("La description du tache est : %s",t.description);
-    printf("Le statut du tache est : %s",t.statut);
+    printf("La description du tache est : %s", t.description);
+    printf("Le statut du tache est : %s", t.statut);
 }
 
 int main()
 {
-
-    char menu[100];
+    tache T[200];
     int choix;
     do
     {
@@ -70,7 +77,7 @@ int main()
         {
         case 1:
             printf("1 - Ajouter une nouvelle tache : \n");
-            ajouter();
+            ajouter(T);
             afficher();
             break;
         case 2:
