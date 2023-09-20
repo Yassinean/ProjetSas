@@ -33,12 +33,8 @@ void ajouter(tache t[])
     printf("Entrer la description du tache : \n");
     scanf("%s", t[id].description);
     printf("Entrer le deadline du tache : \n");
-    printf("Entrer le deadline jour : \n");
-    scanf("%d", &t[id].deadline->jour);
-    printf("Entrer le deadline mois : \n");
-    scanf("%d", &t[id].deadline->mois);
-    printf("Entrer le deadline annee: \n");
-    scanf("%d", &t[id].deadline->annee);
+    printf("Entrer le deadline jour mois annee : \n");
+    scanf("%d %d %d", &t[id].deadline->jour, &t[id].deadline->mois,&t[id].deadline->annee);
     printf("Entrer le statut du tache : \n");
     scanf("%s", t[id].statut);
 }
