@@ -38,7 +38,7 @@ int main()
                 printf("1-Trier la tache par ordre alphabetique : \n");
                 printf("2-Trier la tache par deadline : \n");
                 printf("3-Afficher les taches dont le deadline est 3 jours ou moins : \n");
-                printf("4-Quitter");
+                printf("4-Quitter\n");
                 printf("Choisi le tri que vous voulez : ");
                 scanf("%d", &choixtri);
                 switch (choixtri)
@@ -57,7 +57,7 @@ int main()
                     printf("4-Quitter \n");
                     break;
                 default:
-                    printf("chois invalid : \n");
+                    printf("choix invalid : \n");
                     break;
                 }
 
@@ -90,7 +90,7 @@ int main()
                     printf("4-Quitter \n");
                     break;
                 default:
-                    printf("chois invalid : \n");
+                    printf("choix invalid : \n");
                     break;
                 }
 
@@ -101,10 +101,64 @@ int main()
             printf("Supprimer une tache par identifiant : ");
             break;
         case 6:
-            printf("Rechercher les taches : ");
+            printf("Rechercher les taches : \n");
+            int choixRecherche;
+            do
+            {
+                printf("1-Recherche une tache par son Identifiant : \n");
+                printf("2-Recherche une tache par son Titre : : \n");
+                printf("3-Quitter\n");
+                printf("Choisi la recherche que vous voulez : \n");
+                scanf("%d", &choixRecherche);
+                switch (choixRecherche)
+                {
+                case 1:
+                    printf("1-Recherche une tache par son Identifiant : \n");
+                    break;
+                case 2:
+                    printf("2-Recherche une tache par son Titre : \n");
+                    break;
+                case 3:
+                    printf("3-Quitter");
+                    break;
+                default:
+                    printf("choix invalid : \n");
+                    break;
+                }
+
+            } while (choixRecherche != 3);
+
             break;
         case 7:
             printf("Statistiques : ");
+            int choixStatistique;
+            do
+            {
+                printf("1-Recherche une tache par son Identifiant : \n");
+                printf("2-Recherche une tache par son Titre : : \n");
+                printf("3-Quitter\n");
+                printf("Choisi la recherche que vous voulez : \n");
+                scanf("%d", &choixStatistique);
+                switch (choixStatistique)
+                {
+                case 1:
+                    printf("1-Afficher le nombre total des taches : \n");
+                    break;
+                case 2:
+                    printf("2-Afficher le nombre de taches completes et incompletes : \n");
+                    break;
+                case 3:
+                    printf("3-Afficher le nombre de jours restantsn jusqu'au delai de chaque tache:\n");
+                case 4:
+                    printf("4-Quitter");
+                    break;
+                default:
+                    printf("choix invalid : \n");
+                    break;
+                }
+
+            } while (choixStatistique != 4);
+
             break;
         case 8:
             printf("Quitter");
