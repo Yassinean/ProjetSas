@@ -4,6 +4,50 @@
 #include <string.h>
 #include <time.h>
 
+typedef struct date
+{
+    int jour;
+    int mois;
+    int annee;
+}date;
+
+typedef struct tache
+{
+    int id;
+    char titre[100];
+    date deadline[100];
+    char description[100];
+    char statut[100];
+}tache;
+
+void ajouter()
+{
+    tache t;
+    int id;
+    date deadline;
+    char titre[100], description[100], statut[100];
+    int n = 0;
+    printf("%d\n", n+1); 
+    printf("Entrer le titre du tache : ");
+    scanf("%s", t.titre);
+    printf("Entrer la description du tache : ");
+    scanf("%s",t.description);
+    printf("Entrer le statut du tache : ");
+    scanf("%s",t.statut);
+}
+
+void afficher(){
+    tache t;
+    int id;
+    date deadline;
+    char titre[100], description[100], statut[100];
+    int n = 0;
+    printf("%d\n", n+1);   
+    printf("Le titre du tache est : %s", t.titre);
+    printf("La description du tache est : %s",t.description);
+    printf("Le statut du tache est : %s",t.statut);
+}
+
 int main()
 {
 
@@ -11,14 +55,14 @@ int main()
     int choix;
     do
     {
-        printf("1 - Ajouter une nouvelle tache : \n");
-        printf("2 - Ajouter plusieurs nouvelles taches : \n");
-        printf("3 - Afficher la liste de toute les taches : \n");
-        printf("4 - Modifier une tache : \n");
-        printf("5 - Supprimer une tache par identifiant : \n");
-        printf("6 - Rechercher les taches : \n");
-        printf("7 - Statistiques : \n");
-        printf("8 - Quitter les taches : \n");
+        printf("**********1 - Ajouter une nouvelle tache : **********\n");
+        printf("**********2 - Ajouter plusieurs nouvelles taches : **********\n");
+        printf("**********3 - Afficher la liste de toute les taches : **********\n");
+        printf("**********4 - Modifier une tache : **********\n");
+        printf("**********5 - Supprimer une tache par identifiant : **********\n");
+        printf("**********6 - Rechercher les taches : **********\n");
+        printf("**********7 - Statistiques : **********\n");
+        printf("**********8 - Quitter les taches : **********\n");
 
         printf("Tapez votre choix : ");
         scanf("%d", &choix);
@@ -26,6 +70,8 @@ int main()
         {
         case 1:
             printf("1 - Ajouter une nouvelle tache : \n");
+            ajouter();
+            afficher();
             break;
         case 2:
             printf("2 - Ajouter plusieurs nouvelles taches : \n");
@@ -158,7 +204,6 @@ int main()
                 }
 
             } while (choixStatistique != 4);
-
             break;
         case 8:
             printf("Quitter");
