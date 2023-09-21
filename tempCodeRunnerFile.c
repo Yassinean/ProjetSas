@@ -1,4 +1,10 @@
-
-        printf("\n\n\n\nLe titre du tache est : %s\n", t.titre);
-    printf("La description du tache est : %s\n", t.description);
-    printf("Le statut du tache est : %s\n", t.statut);
+void ajouterPlusieurTache(tache t[])
+{
+    int n, i;
+    printf("Tapez le nombre des taches que vous voulez : ");
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+    {
+        ajouter(t);
+    }
+}

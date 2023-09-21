@@ -19,52 +19,128 @@ typedef struct tache
     char description[100];
     char statut[100];
 } tache;
-int n = 0;
 
+int taille = 0;
 void ajouter(tache t[])
 {
-
-    t->id = n + 1;
-    printf("%d\n", n + 1);
+    printf("Entrer les information de votre tache  :\n");
+    t[taille].id = taille + 1;
+    printf("l'ID = %d\n", t[taille].id);
     printf("Entrer le titre du tache : \n");
-    scanf("%s", t[n].titre);
+    scanf(" %[^\n]", t[taille].titre);
     printf("Entrer la description du tache : \n");
-    scanf("%s", t[n].description);
+    scanf(" %[^\n]", t[taille].description);
     printf("Entrer le deadline du tache : \n");
-    printf("Entrer le deadline jour mois annee : \n");
-    scanf("%d %d %d", &t[n].deadline->jour, &t[n].deadline->mois, &t[n].deadline->annee);
+    printf("Entrer le deadline ( jour mois annee ): \n");
+    scanf("%d/%d/%d", &t[taille].deadline->jour, &t[taille].deadline->mois, &t[taille].deadline->annee);
+    int choix;
     printf("Entrer le statut du tache : \n");
-    scanf("%s", t[n].statut);
-
-        printf("\n\n\n\nLe titre du tache est : %s\n", t.titre);
-    printf("La description du tache est : %s\n", t.description);
-    printf("Le statut du tache est : %s\n", t.statut);
+    printf("1. Si votre tache est a realiser\n");
+    printf("2. Si votre tache est en cours\n");
+    printf("3. Si votre tache est finalisee\n");
+    scanf("%d", &choix);
+    switch (choix)
+    {
+    case 1:
+        strcpy(t[taille].statut, " est a realiser\n");
+        break;
+    case 2:
+        strcpy(t[taille].statut, " est en cours\n");
+        break;
+    case 3:
+        strcpy(t[taille].statut, " est finalisee\n");
+        break;
+    default:
+        break;
+    }
+    printf("Status : %s", t[taille].statut);
+    taille++;
 }
 
-void afficher()
+void triParOrderAlphabetique(tache t[])
 {
-    tache t;ç
-
-    printf("%d\n", n + 1);
-    printf("Le titre du tache est : %s\n", t.titre);
-    printf("La description du tache est : %s\n", t.description);
-    printf("Le statut du tache est : %s\n", t.statut);
+    int echange;
+    for (int i = 0; i < taille - 1; i++)
+    {
+        echange = 0;
+        for (int j = 0; j < taille - i - 1; j++)
+        {
+            if (strcmp(t[j].titre, t[j + 1].titre) > 0)
+            {
+                tache temp = t[j];
+                t[j] = t[j + 1];
+                t[j + 1] = temp;
+                echange = 1;
+            }
+        }
+        if (echange == 0)
+            break;
+    }
+    afficher(t);
 }
 
+void triParOrderDeadline(tache t[])
+{
+    for (int i = 0; i < taille - 1; i++)
+    {
+        for (int j = 0; j < taille - i - 1; j++)
+        {
+            if ((t[j].deadline->annee > t[j + 1].deadline->annee) ||
+                ((t[j].deadline->annee == t[j + 1].deadline->annee) && (t[j].deadline->mois > t[j + 1].deadline->mois)) ||
+                ((t[j].deadline->annee == t[j + 1].deadline->annee) && (t[j].deadline->mois == t[j + 1].deadline->mois) && (t[j].deadline->jour > t[j + 1].deadline->jour)))
+            {
+                tache temp = t[j];
+                t[j] = t[j + 1];
+                t[j + 1] = temp;
+            }
+        }
+    }
+    afficher(t);
+}
+
+void afficher(tache t[])
+{
+    int i;
+    printf("Affichage de la liste des taches :\n");
+    for (i = 0; i < taille; i++)
+    {
+        printf("ID              |  %d\n", t[i].id);
+        printf("\n--------------------------------\n");
+        printf("Titre           |  %s\n", t[i].titre);
+        printf("\n--------------------------------\n");
+        printf("Description     |  %s\n", t[i].description);
+        printf("\n--------------------------------\n");
+        printf("Deadline        |  %d %d %d\n", t[i].deadline->jour, t[i].deadline->mois, t[i].deadline->annee);
+        printf("\n--------------------------------\n");
+        printf("Statut          |  %s\n", t[i].statut);
+    }
+}
+
+void ajouterPlusieurTache(tache t[])
+{
+    int n, i;
+    printf("Tapez le nombre des taches que vous voulez : ");
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+    {
+        ajouter(t);
+    }
+}
 int main()
 {
-    tache T[200];
+    tache t[200];
     int choix;
+    printf("/* -------------------- Gestion de Taches ToDo -------------------- */\n");
     do
     {
-        printf("**********1 - Ajouter une nouvelle tache : **********\n");
-        printf("**********2 - Ajouter plusieurs nouvelles taches : **********\n");
-        printf("**********3 - Afficher la liste de toute les taches : **********\n");
-        printf("**********4 - Modifier une tache : **********\n");
-        printf("**********5 - Supprimer une tache par identifiant : **********\n");
-        printf("**********6 - Rechercher les taches : **********\n");
-        printf("**********7 - Statistiques : **********\n");
-        printf("**********8 - Quitter les taches : **********\n");
+        printf("---------- 1 - Ajouter une nouvelle tache :             ---------- \n");
+        printf("---------- 2 - Ajouter plusieurs nouvelles taches :     ---------- \n");
+        printf("---------- 3 - Afficher la liste de toute les taches :  ---------- \n");
+        printf("---------- 4 - Modifier une tache :                     ---------- \n");
+        printf("---------- 5 - Supprimer une tache par identifiant :    ---------- \n");
+        printf("---------- 6 - Rechercher les taches :                  ---------- \n");
+        printf("---------- 7 - Statistiques :                           ---------- \n");
+        printf("---------- 8 - Quitter les taches :                     ---------- \n");
 
         printf("Tapez votre choix : ");
         scanf("%d", &choix);
@@ -72,34 +148,37 @@ int main()
         {
         case 1:
             printf("1 - Ajouter une nouvelle tache : \n");
-            ajouter(T);
-            afficher(T);
+            ajouter(t);
             break;
         case 2:
             printf("2 - Ajouter plusieurs nouvelles taches : \n");
+            ajouterPlusieurTache(t);
             break;
         case 3:
             printf("3 - Afficher la liste de toute les taches : \n");
-            int choixtri;
+            printf("--------------------------------\n");
+            printf("1 - Trier par ordre alphabetique :\n");
+            printf("2 - Trier par ordre deadline :\n");
+            printf("3 - Afficher les taches dont le deadline est dans 3 jours ou moins : \n");
+            printf("4 - Quitter \n");
+            printf("----------------------------------------------------------------");
+            int choixTri;
             do
             {
-                printf("1-Trier la tache par ordre alphabetique : \n");
-                printf("2-Trier la tache par deadline : \n");
-                printf("3-Afficher les taches dont le deadline est 3 jours ou moins : \n");
-                printf("4-Quitter\n");
-                printf("Choisi le tri que vous voulez : ");
-                scanf("%d", &choixtri);
-                switch (choixtri)
+
+                switch (choixTri)
                 {
                 case 1:
-                    printf("Choisi le tri que vous voulez : \n");
-                    printf("1-Trier la tache par ordre alphabetique : \n");
+                    printf("1-Trier les taches par ordre alphabetique : \n");
+                    triParOrderAlphabetique(t);
                     break;
                 case 2:
-                    printf("2-Trier la tache par deadline : \n");
+                    printf("2-Trier les taches par deadline  : \n");
+                    triParOrderDeadline(t);
+
                     break;
                 case 3:
-                    printf("3-Afficher les taches dont le deadline est 3 jours ou moins : \n");
+                    printf("3-Afficher les taches dont le deadline est dans 3 jours ou moins : \n");
                     break;
                 case 4:
                     printf("4-Quitter \n");
@@ -108,9 +187,10 @@ int main()
                     printf("choix invalid : \n");
                     break;
                 }
+                printf("Tapez le tri qui vous voulez :");
+                scanf("%d", &choixTri);
 
-            } while (choixtri != 4);
-
+            } while (choixTri != 4);
             break;
         case 4:
             printf("Modifier une tache : \n");
@@ -170,6 +250,7 @@ int main()
                     printf("3-Quitter");
                     break;
                 default:
+
                     printf("choix invalid : \n");
                     break;
                 }
