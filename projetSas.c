@@ -126,6 +126,54 @@ void ajouterPlusieurTache(tache t[])
         ajouter(t);
     }
 }
+
+void modifierDescription(tache t[]){
+    int id;
+    printf("Tapez l'ID de la tache que vous voulez modifier : ");
+    scanf("%d", &id);
+    for (int i = 0; i < taille; i++)
+    {
+        if (t[i].id == id)
+        {
+            printf("Tapez la nouvelle description de la tache : ");
+            scanf(" %[^\n]", t[i].description);
+        }
+    }
+    afficher(t);
+}
+
+void modifierStatut(tache t[])
+{
+    int id;
+    printf("Tapez l'ID de la tache que vous voulez modifier : ");
+    scanf("%d", &id);
+    for (int i = 0; i < taille; i++)
+    {
+        if (t[i].id == id)
+        {
+            printf("Tapez le nouveau statut de la tache : ");
+            scanf(" %[^\n]", t[i].statut);
+        }
+    }
+    afficher(t);
+}
+
+void modifierDeadline(tache t[]){
+    int id;
+    printf("Tapez l'ID de la tache que vous voulez modifier : ");
+    scanf("%d", &id);
+    for (int i = 0; i < taille; i++)
+    {
+        if (t[i].id == id)
+        {
+            printf("Tapez la nouvelle deadline de la tache : \n");
+            printf("Entrer le deadline ( jour mois annee ): \n");
+            printf("Entrer le deadline ( jour mois annee ): \n");
+            scanf("%d/%d/%d", &t[i].deadline->jour, &t[i].deadline->mois, &t[i].deadline->annee);
+        }
+    }
+    afficher(t);
+}
 int main()
 {
     tache t[200];
@@ -207,12 +255,15 @@ int main()
                 {
                 case 1:
                     printf("1-Modifier la descriotion d'une tache : \n");
+                    modifierDescription(t);
                     break;
                 case 2:
                     printf("2-Modifier le status d'une tache : \n");
+                    modifierStatut(t);
                     break;
                 case 3:
                     printf("3-Modifier le deadline du tache : \n");
+                    modifierDeadline(t);
                     break;
                 case 4:
                     printf("4-Quitter \n");
