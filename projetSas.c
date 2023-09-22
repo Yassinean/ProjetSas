@@ -306,6 +306,39 @@ void afficherNbrTachesCompleteIncompletes(tache t[]) {
     printf("Nombre de taches completes : %d\n", complete);
     printf("Nombre de taches incompletes : %d\n\n", incomplete);
 }
+
+
+void statistiques(tache t[]) {
+    printf("Statistiques :\n");
+
+    // Afficher le nombre total de tâches
+    printf("Nombre total de tâches : %d\n", taille);
+
+    // Initialiser les compteurs pour les tâches complètes et incomplètes
+    int tachesCompletes = 0;
+    int tachesIncompletes = 0;
+
+    // Afficher le nombre de jours restants jusqu'au délai de chaque tâche
+    printf("Nombre de jours restants jusqu'au délai de chaque tâche :\n");
+    printf("%-5s %-20s %-12s %-20s\n", "ID", "Titre", "Délai (j)", "Statut");
+
+    for (int i = 0; i < taille; i++) {
+        struct tm task_tm = {0}; // Initialize all fields to 0
+        task_tm.tm_mday = t[i].deadline->jour;
+        task_tm.tm_mon = t[i].deadline->mois - 1;
+        task_tm.tm_year = t[i].deadline->annee - 1900;
+
+        time_t currentTime;
+        time(&currentTime); // Update currentTime for each task
+
+        time_t taskTime = mktime(&task_tm);
+        double diff = difftime(taskTime, currentTime);
+        int joursRestants = diff / (60 * 60 * 24); // Convertir la différence en jours
+
+        printf("%-5d %-20s %-12d %-20s\n", t[i].id, t[i].titre, joursRestants, t[i].statut);
+    }
+    }
+
 int main()
 {
     tache t[200];
@@ -432,9 +465,10 @@ int main()
         case 7:
             printf("---------------- Statistiques : -------------------\n");
             int choixStatistique;
-            printf("1-Recherche une tache par son Identifiant : \n");
-            printf("2-Recherche une tache par son Titre : : \n");
-            printf("3-Quitter\n");
+            printf("1-Afficher le nombre total des taches : \n\n");
+            printf("2-Afficher le nombre de taches completes et incompletes :  \n");
+            printf("3-Afficher le nombre de jours restants jusqu'au delai de chaque tache\n");
+            printf("4-Quitter : \n");
             printf("Choisi la recherche que vous voulez : \n");
             scanf("%d", &choixStatistique);
             switch (choixStatistique)
@@ -449,6 +483,7 @@ int main()
                 break;
             case 3:
                 printf("3-Afficher le nombre de jours restants jusqu'au delai de chaque tache:\n");
+                statistiques(t);
             case 4:
                 printf("4-Quitter");
                 break;
