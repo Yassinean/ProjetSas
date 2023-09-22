@@ -150,3 +150,56 @@ int main()
     return 0;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool found = false;
+            for (int i = 0; i < taille; i++) {
+                if (tasks[i].id == id1) {
+                    printf("Votre tache est trouvee:\n");
+                    printf("ID:            | %d\n", taille[i].id);
+                    printf("Title:         | %s\n", taille[i].title);
+                    printf("Description:   | %s\n", taille[i].description);
+                    printf("Deadline:      | %s\n", taille[i].deadline);
+                    printf("Status:        | %s\n" , taille[i].status);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                printf("La tache de cet ID %d non trouvee.\n", id1);
+            }
+            break;
